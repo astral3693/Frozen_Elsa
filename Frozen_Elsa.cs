@@ -17,6 +17,8 @@ using System.Reflection.Metadata;
 using CounterStrikeSharp.API.Modules.Timers;
 using CounterStrikeSharp.API.Modules.Memory;
 using Frozen_music.Config;
+using CounterStrikeSharp.API.Modules.Commands.Targeting;
+using CounterStrikeSharp.API.Modules.Commands;
 
 namespace Frozen_Elsa;
 public class Config : BasePluginConfig
@@ -76,6 +78,26 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
 
         return HookResult.Continue;
 
+    }
+
+    private static TargetResult? GetTarget(CommandInfo command)
+    {
+        var matches = command.GetArgTargetResult(1);
+
+        if (!matches.Any())
+        {
+            command.ReplyToCommand($"Target {command.GetArg(1)} not found.");
+            return null;
+        }
+
+        if (command.GetArg(1).StartsWith('@'))
+            return matches;
+
+        if (matches.Count() == 1)
+            return matches;
+
+        command.ReplyToCommand($"Multiple targets found for \"{command.GetArg(1)}\".");
+        return null;
     }
 
     // Helper function to check if attacker threw a smoke grenade recently (replace with your game-specific logic)

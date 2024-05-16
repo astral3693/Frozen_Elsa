@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj": {}
+    "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj": {
+    "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj",
+        "projectUniqueName": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
         "projectName": "Frozen_Elsa",
-        "projectPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj",
+        "projectPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
         "packagesPath": "C:\\Users\\amaur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\obj\\",
+        "outputPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

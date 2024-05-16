@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "CounterStrikeSharp.API/1.0.228": {
+      "CounterStrikeSharp.API/1.0.233": {
         "type": "package",
         "dependencies": {
           "McMaster.NETCore.Plugins": "1.4.0",
@@ -894,14 +894,14 @@
     }
   },
   "libraries": {
-    "CounterStrikeSharp.API/1.0.228": {
-      "sha512": "oJWeMCJt/uQZEOXucgugu3u+QBYBqxzONf/rHjBetIZCeqgUMilo3s10GgyRMhHBDS0nBO5POUcg6K96aTxwLg==",
+    "CounterStrikeSharp.API/1.0.233": {
+      "sha512": "s3h/hcMLzWrbAFqLUxk6Ld68J2IwUtxnHXD14zTQ7km1LCvsoI7XpxD335usNpRmsWTiZ5I+tG6PcvPBPw/2/A==",
       "type": "package",
-      "path": "counterstrikesharp.api/1.0.228",
+      "path": "counterstrikesharp.api/1.0.233",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "counterstrikesharp.api.1.0.228.nupkg.sha512",
+        "counterstrikesharp.api.1.0.233.nupkg.sha512",
         "counterstrikesharp.api.nuspec",
         "lib/net8.0/CounterStrikeSharp.API.dll",
         "lib/net8.0/CounterStrikeSharp.API.runtimeconfig.json",
@@ -2526,11 +2526,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj",
+      "projectUniqueName": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
       "projectName": "Frozen_Elsa",
-      "projectPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj",
+      "projectPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
       "packagesPath": "C:\\Users\\amaur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\obj\\",
+      "outputPath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -103,7 +103,7 @@ namespace Frozen_music.Config
             
             public ConfigData()
             {
-                KS_EnableQuakeSounds = false;
+                KS_EnableQuakeSounds = true;
                 empty = "-----------------------------------------------------------------------------------";
                 explode = "sounds/frozen_music/explode.vsnd_c";
                 freeze_hit = "sounds/frozen_music/freeze_hit.vsnd_c";

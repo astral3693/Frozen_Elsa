@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "z5b+qJ3NSHe8qFgQbAGx3HW0/jn3uwBFT8B5n1P+urzt0nncQ6vuVx7PY9hjHQAbv70v7Y26hh8PAFqrhVJ1YA==",
+  "dgSpecHash": "hDuO8LYsK0eMJSJ36L/4nagnMVAv/W1GwrGm13eW/k1U3/ISjtRt//piv9wbypboK6Cv9b4WT9IzWgax60QC1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa\\Frozen_Elsa.csproj",
+  "projectFilePath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\amaur\\.nuget\\packages\\counterstrikesharp.api\\1.0.228\\counterstrikesharp.api.1.0.228.nupkg.sha512",
+    "C:\\Users\\amaur\\.nuget\\packages\\counterstrikesharp.api\\1.0.233\\counterstrikesharp.api.1.0.233.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\mcmaster.netcore.plugins\\1.4.0\\mcmaster.netcore.plugins.1.4.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.dotnet.apicompat.task\\8.0.203\\microsoft.dotnet.apicompat.task.8.0.203.nupkg.sha512",
