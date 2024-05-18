@@ -1,3 +1,4 @@
+using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
 using CounterStrikeSharp.API.Core.Translations;
@@ -6,58 +7,45 @@ using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Menu;
 using CounterStrikeSharp.API.Modules.Utils;
 using Frozen_music.Config;
+using Microsoft.Extensions.Logging;
+using System.Drawing;
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 
 namespace Frozen_Elsa;
 
 public partial class Frozen_Elsa
 {
+    
 
 
-    [ConsoleCommand("css_teste", "Freeze a player.")]
-    [CommandHelper(1, "<#userid or name or @me> [duration]")]
-    [RequiresPermissions("@css/slay")]
-    public void OnFreezeCommand(CCSPlayerController? caller, CommandInfo command)
+    [ConsoleCommand("css_dc", "dc")]// !dc
+    public void OnCommandGiveItems(CCSPlayerController? player, CommandInfo commandInfo)
     {
-
-        var callerName = caller == null ? "Console" : caller.PlayerName;
-        int.TryParse(command.GetArg(2), out var time);
-
-        var targets = GetTarget(command);
-        var playersToTarget = targets!.Players.Where(player => player is { IsValid: true, PawnIsAlive: true, IsHLTV: false }).ToList();
+        if (player == null) return;
+        if (!player.IsValid) return;
 
 
-        playersToTarget.ForEach(player =>
-        {
-            if (!player.IsBot && player.SteamID.ToString().Length != 17)
-                return;
+        var callerName = player == null ? "Console" : player.PlayerName;
+        
 
-            
-                Freeze(caller, player, time, callerName);
-           
-        });
-    }
+        //Server.ExecuteCommand($"css_freeze {callerName} 9");
+        //player?.PrintToChat($"Freeze {callerName} 9 secord");
 
-    public void Freeze(CCSPlayerController? caller, CCSPlayerController? player, int time, string? callerName = null)
-    {
-        // Assuming callerName is optional and can be null
-        string command = $"css_freeze {callerName} {time}";  // String formatting with interpolated string literals
+
+        //player?.ExecuteClientCommand($"play sounds/ui/counter_beep.vsnd");
+        
+        player?.ExecuteClientCommand($"play sounds/frozen_music2/frozen-ice.vsnd_c");
+
+        player?.GiveNamedItem("weapon_Decoy");
 
         
 
-        player.PrintToChat(command);
 
-        player.ExecuteClientCommand("play " + Configs.GetConfigData().frozengo);
-        player.ExecuteClientCommand(command);
-
+        //player.GiveNamedItem("weapon_m4a1");
+        //player.GiveNamedItem("item_kevlar");
+        //player.GiveNamedItem("weapon_tec9");
     }
-
-    public void Unfreeze(CCSPlayerController? caller, CCSPlayerController? player, string? callerName = null, CommandInfo? command = null)
-    {
-        callerName ??= caller == null ? "Console" : caller.PlayerName;
-
-       
-    }
-
 }

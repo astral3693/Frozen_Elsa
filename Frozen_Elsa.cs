@@ -29,15 +29,20 @@ public class Config : BasePluginConfig
     public bool PlayerCounter { get; set; } = true;
     [JsonPropertyName("ConfigVersion")]
     public override int Version { get; set; } = 2;
+
+    public bool IsHooked { get; set; }
+    public CBeam? BeamEntity { get; set; }
+    public System.Numerics.Vector3 ForwardVector { get; set; }
 }
 public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName => "Frozen_Elsa";
     public override string ModuleAuthor => "Amauri Bueno dos Santos";
     public override string ModuleDescription => "Adds Grenades Special Effects.";
-    public override string ModuleVersion => "V. 0.0.1";
+    public override string ModuleVersion => "V. 0.0.2";
 
     public required Config Config { get; set; }
+    public byte LIFE_ALIVE { get; private set; }
 
     public void OnConfigParsed(Config config)
     {
@@ -45,65 +50,88 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
         Config = config;
     }
 
-    public override void Load(bool hotReload)
-    {
-        RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
-    }
+
    
 
-    private HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
+    public System.Numerics.Vector3 QAngleToForwardVector(QAngle angle)
     {
-        if (@event == null) return HookResult.Continue;
-        var victim = @event.Userid;
-        var attacker = @event.Attacker;
-        var hitgroup = @event.Hitgroup;
+        var pitch = (Math.PI / 180) * angle.X;
+        var yaw = (Math.PI / 180) * angle.Y;
 
-        if (victim == null || !victim.IsValid) return HookResult.Continue;
-        if (attacker == null || !attacker.IsValid || attacker.IsBot) return HookResult.Continue;
+        var cosPitch = Math.Cos(pitch);
+        var sinPitch = Math.Sin(pitch);
+        var cosYaw = Math.Cos(yaw);
+        var sinYaw = Math.Sin(yaw);
 
-        if (attacker != victim)
+        return new System.Numerics.Vector3((float)(cosPitch * cosYaw), (float)(cosPitch * sinYaw), (float)-sinPitch);
+    }
+
+    [GameEventHandler]
+    public HookResult OnDecoyStarted(EventDecoyStarted @event, GameEventInfo info)
+    {
+        var player = @event.Userid; 
+        var callerName = player == null ? "Console" : player.PlayerName;
+
+
+        if (Config is not null)
         {
-            if (attackerThrewSmokeRecently())
-            {
-                attacker.ExecuteClientCommand("play " + Configs.GetConfigData().frozengo);
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(Configs.GetConfigData().frozengo))
-                {
-                    attacker.ExecuteClientCommand("play " + Configs.GetConfigData().frozengo);
-                }
-            }
+            // sphere ent
+
+            player?.ExecuteClientCommand($"play sounds/frozen_music2/frozen-go.vsnd_c");
+
+            SphereEntity sphereEntity = new SphereEntity(new Vector(@event.X, @event.Y, @event.Z), 200);
+            DrawLaserBetween(sphereEntity.circleInnerPoints, sphereEntity.circleOutterPoints, 5);
+            Server.ExecuteCommand($"css_freeze {callerName} 3");
+            player?.PrintToChat($"Freeze {callerName} 3 secord");
+
         }
 
         return HookResult.Continue;
-
     }
 
-    private static TargetResult? GetTarget(CommandInfo command)
-    {
-        var matches = command.GetArgTargetResult(1);
 
-        if (!matches.Any())
+
+    private void DrawLaserBetween(Vector[] startPos, Vector[] endPos, float duration)
+    {
+
+        for (int i = 0; i < endPos.Length; i++)
         {
-            command.ReplyToCommand($"Target {command.GetArg(1)} not found.");
-            return null;
+
+            CBeam beam = Utilities.CreateEntityByName<CBeam>("beam");
+
+            //var pawn = player?.PlayerPawn.Get();
+            //var activeWeapon = pawn?.WeaponServices?.ActiveWeapon.Get();
+
+
+            if (beam == null)
+            {
+                return;
+            }
+            
+                beam.Render = Color.Blue;
+                beam.Width = 2.0f;
+
+                beam.Teleport(startPos[i], new QAngle(0), new Vector(0, 0, 0));
+                beam.EndPos.X = endPos[i].X;
+                beam.EndPos.Y = endPos[i].Y;
+                beam.EndPos.Z = endPos[i].Z;
+
+
+
+            beam.DispatchSpawn();
+            AddTimer(duration, () => { beam.Remove(); });
+
         }
 
-        if (command.GetArg(1).StartsWith('@'))
-            return matches;
 
-        if (matches.Count() == 1)
-            return matches;
-
-        command.ReplyToCommand($"Multiple targets found for \"{command.GetArg(1)}\".");
-        return null;
     }
 
-    // Helper function to check if attacker threw a smoke grenade recently (replace with your game-specific logic)
-    private bool attackerThrewSmokeRecently()
-    {
-        // ... (your implementation to check for smoke grenade usage)
-        return false; // Placeholder, replace with actual logic
-    }
+
+
+   
+
+
+
+
+
 }
