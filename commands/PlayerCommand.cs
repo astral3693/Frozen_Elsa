@@ -8,10 +8,12 @@ using CounterStrikeSharp.API.Modules.Menu;
 using CounterStrikeSharp.API.Modules.Utils;
 using Frozen_music.Config;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
+using static System.Net.WebRequestMethods;
 
 
 namespace Frozen_Elsa;
@@ -41,11 +43,28 @@ public partial class Frozen_Elsa
 
         player?.GiveNamedItem("weapon_Decoy");
 
-        
+        player?.PrintToCenterHtml($"[{"<img src='http://26.67.120.79/skinplayersweb/img/657ca211c7f7d.jpg' height='50'>"}]</img><br />");
+
+
+
 
 
         //player.GiveNamedItem("weapon_m4a1");
         //player.GiveNamedItem("item_kevlar");
-        //player.GiveNamedItem("weapon_tec9");
     }
+
+
+    [ConsoleCommand("css_a", "a")]// !dc
+    public void OnCommandAItems(CCSPlayerController? player, CommandInfo commandInfo)
+    {
+        if (player == null) return;
+        if (!player.IsValid) return;
+
+        var callerName = player == null ? "Console" : player.PlayerName;
+        player?.ExecuteClientCommand($"play sounds/marius_music/ala-se-amari-yah-aaa-baba-yah-abadon.vsnd");
+
+
+    }
+
+    
 }

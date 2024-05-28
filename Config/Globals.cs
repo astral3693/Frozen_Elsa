@@ -1,5 +1,7 @@
 using CounterStrikeSharp.API.Core;
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection.Metadata;
 
 namespace Frozen_Elsa;
@@ -17,41 +19,25 @@ public class Globals
     private const string IceModel = "models/weapons/eminem/ice_cube/ice_cube.mdl";
     private const string IceCube3d = "materials/weapons/eminem/ice_cube/ice_cube.vmt";
 
-    private static readonly float[] NULL_VELOCITY = { 0.0f, 0.0f, 0.0f };
-
-    private Handle g_LightningSprite;
-    private Handle g_HaloSprite;
-
-    private float g_Time = 3;
-
-    private int modelindex;
-    private int haloindex;
-
-    private Handle h_greneffects_enable;
-    private bool b_enable;
-    private Handle h_greneffects_trails;
-    private bool b_trails;
-
-    private Handle h_greneffects_napalm_he;
-    private bool b_napalm_he;
-    private float f_napalm_he_duration;
-
-    private Handle h_greneffects_smoke_freeze;
-    private bool b_smoke_freeze;
-    private float f_smoke_freeze_distance;
-    private float f_smoke_freeze_duration;
-
-    private Handle h_greneffects_flash_light;
-    private bool b_flash_light;
-    private float f_flash_light_distance;
-    private float f_flash_light_duration;
-
-    private Handle mp_friendlyfire;
-    private bool b_friendlyfire;
-
-
-    private Handle h_fwdOnClientFreeze;
-    private Handle h_fwdOnClientFreezed;
+    public static char Default = '\x01';
+    public static char White = '\x01';
+    public static char Darkred = '\x02';
+    public static char Green = '\x04';
+    public static char LightYellow = '\x03';
+    public static char LightBlue = '\x03';
+    public static char Olive = '\x05';
+    public static char Lime = '\x06';
+    public static char Red = '\x07';
+    public static char Purple = '\x03';
+    public static char Grey = '\x08';
+    public static char Yellow = '\x09';
+    public static char Gold = '\x10';
+    public static char Silver = '\x0A';
+    public static char Blue = '\x0B';
+    public static char DarkBlue = '\x0C';
+    public static char BlueGrey = '\x0D';
+    public static char Magenta = '\x0E';
+    public static char LightRed = '\x0F';
 
 
     public static int Takefreezetime;
@@ -69,5 +55,4 @@ public class Globals
     public static Dictionary<ulong, DateTime> lastPlayTimesMolly = new Dictionary<ulong, DateTime>();
 
 
-    
 }
