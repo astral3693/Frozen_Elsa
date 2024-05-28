@@ -39,7 +39,7 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
     public override string ModuleName => "Frozen_Elsa";
     public override string ModuleAuthor => "Astral & kenoxyd laser custom";
     public override string ModuleDescription => "Adds Grenades Special Effects.";
-    public override string ModuleVersion => "V. 0.0.2";
+    public override string ModuleVersion => "V. 2.1.3";
 
     public required Config Config { get; set; }
     public byte LIFE_ALIVE { get; private set; }
