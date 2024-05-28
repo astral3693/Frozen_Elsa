@@ -37,7 +37,7 @@ public class Config : BasePluginConfig
 public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName => "Frozen_Elsa";
-    public override string ModuleAuthor => "Amauri Bueno dos Santos";
+    public override string ModuleAuthor => "Astral & kenoxyd laser custom";
     public override string ModuleDescription => "Adds Grenades Special Effects.";
     public override string ModuleVersion => "V. 0.0.2";
 
