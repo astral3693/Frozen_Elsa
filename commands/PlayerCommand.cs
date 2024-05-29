@@ -66,5 +66,35 @@ public partial class Frozen_Elsa
 
     }
 
+     [ConsoleCommand("css_glow")]
+ public void OnGlow(CCSPlayerController? controller, CommandInfo command)
+ {
+     // Create a glow effect for the player
+     AddTimer(0.1f, () =>
+     {
+         var prop = Utilities.CreateEntityByName<CCSPlayerPawn>("prop_dynamic");
+         prop.SetModel("characters/models/nozb1/skeletons_player_model/skeleton_player_model_1/skeleton_nozb1_pm.vmdl");
+         prop!.Teleport(controller.PlayerPawn.Value.AbsOrigin, new QAngle(0, 0, 0), new Vector(0, 0, 0));
+         prop.AcceptInput("FollowEntity", caller: prop, activator: controller.PlayerPawn.Value, value: "!activator");
+         prop.DispatchSpawn();
+
+         prop.Render = Color.FromArgb(1, 255, 255, 255);
+         prop.Glow.GlowColorOverride = Color.Red;
+         prop.Spawnflags = 256U;
+         prop.RenderMode = RenderMode_t.kRenderGlow;
+         prop.Glow.GlowRange = 5000;
+         prop.Glow.GlowTeam = -1;
+         prop.Glow.GlowType = 3;
+         prop.Glow.GlowRangeMin = 3;
+         AddTimer(10.0f, () =>
+         {
+             prop.Remove();
+         });
+
+
+     }, TimerFlags.REPEAT);
+
+ }
+
     
 }
