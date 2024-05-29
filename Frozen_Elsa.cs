@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
@@ -95,22 +95,66 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
     [GameEventHandler]
     public HookResult OnDecoyStarted(EventDecoyStarted @event, GameEventInfo info)
     {
-        CCSPlayerController player = @event.Userid;
+        //CCSPlayerController player = @event.Userid;
 
-        Vector PlayerPosition = player.Pawn.Value.AbsOrigin;
-        Vector BulletOrigin = new Vector(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z + 57); // Adjust Z offset if needed
-        Vector bulletDestination = new Vector(@event.X, @event.Y, @event.Z);
-
-        var callerName = player == null ? "Console" : player.PlayerName;
-        player?.ExecuteClientCommand($"play sounds/frozen_music2/frozen-go.vsnd_c");
-
-        SphereEntity sphereEntity = new SphereEntity(new Vector(@event.X, @event.Y, @event.Z), 200);
         
-        DrawLaserBetween(sphereEntity.circleInnerPoints, sphereEntity.circleOutterPoints, 5);
-        Server.ExecuteCommand($"css_freeze {callerName} 5");
-        player?.PrintToChat($"Freeze {callerName} 5 secord");
-        player.PlayerPawn.Value.Render = Color.FromArgb(0, 0, 255);//Azul
-                    
+        if (Config is not null)
+        {
+            // sphere ent
+            foreach (var player in Utilities.FindAllEntitiesByDesignerName<CCSPlayerController>("cs_player_controller"))
+            {
+
+                if (player != null && player.IsValid)//&& !player.IsBot
+                {
+                    if (player.Team == CsTeam.Terrorist)
+                    {
+                        if (player?.PlayerPawn != null && player?.PlayerPawn.Value != null)
+                        {
+                            Vector PlayerPosition = player.Pawn.Value.AbsOrigin;
+                            Vector BulletOrigin = new Vector(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z + 57); // Adjust Z offset if needed
+                            Vector bulletDestination = new Vector(@event.X, @event.Y, @event.Z);
+
+                            var callerName = player == null ? "Console" : player.PlayerName;
+                            player?.ExecuteClientCommand($"play sounds/frozen_music2/frozen-go.vsnd_c");
+
+                            SphereEntity sphereEntity = new SphereEntity(new Vector(@event.X, @event.Y, @event.Z), 200);
+        
+                            DrawLaserBetween(sphereEntity.circleInnerPoints, sphereEntity.circleOutterPoints, 5);
+                            //Server.ExecuteCommand($"css_freeze {callerName} 5");
+                            //player?.PrintToChat($"Freeze {callerName} 5 secord");
+                            //player.PlayerPawn.Value.Render = Color.FromArgb(0, 0, 255);//Azul
+                            // The character emits light, and its effect is not satisfactory, but it can indeed achieve character illumination.Here, we need to obtain the player's model path and SetModel, but I have not found a way to do so
+                            AddTimer(0.1f, () =>
+                            {
+                                var prop = Utilities.CreateEntityByName<CCSPlayerPawn>("prop_dynamic");
+                                prop?.SetModel("characters/models/nozb1/skeletons_player_model/skeleton_player_model_1/skeleton_nozb1_pm.vmdl");
+                                prop!.Teleport(player?.PlayerPawn.Value.AbsOrigin, new QAngle(0, 0, 0), new Vector(0, 0, 0));
+                                prop?.AcceptInput("FollowEntity", caller: prop, activator: player?.PlayerPawn.Value, value: "!activator");
+                                prop?.DispatchSpawn();
+
+                                prop.Render = Color.FromArgb(1, 255, 255, 255);
+                                prop.Glow.GlowColorOverride = Color.Blue;
+                                prop.Spawnflags = 256U;
+                                prop.RenderMode = RenderMode_t.kRenderGlow;
+                                prop.Glow.GlowRange = 5000;
+                                prop.Glow.GlowTeam = -1;
+                                prop.Glow.GlowType = 3;
+                                prop.Glow.GlowRangeMin = 3;
+                                AddTimer(2.0f, () =>
+                             {
+                                prop.Remove();
+                                });
+
+
+                }, TimerFlags.REPEAT);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
 
         return HookResult.Continue;
     }
@@ -165,6 +209,8 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
 
         return HookResult.Continue;
     }
+
+
 
 
 
