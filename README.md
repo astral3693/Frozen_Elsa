@@ -10,8 +10,6 @@ https://www.youtube.com/watch?v=MWYbYk941AM
 [CounterStrike Sharp](https://github.com/roflmuffin/CounterStrikeSharp "CounterStrike Sharp")
 
 [MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager "MultiAddonManager") 
-
-[WorkShop](https://steamcommunity.com/sharedfiles/filedetails/?id=3241525034 "WorkShop")
       
       // Extra addon settings, this is only executed once on plugin load
       
