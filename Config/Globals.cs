@@ -11,10 +11,8 @@ public class Globals
     private const int PLAYER_ONFIRE = (1 << 24);
 
     private bool[] bUserHasFrozen = new bool[33];
-    private string g_FreezeSound = "";
 
-
-    private float fVolume;
+    
 
     private const string IceModel = "models/weapons/eminem/ice_cube/ice_cube.mdl";
     private const string IceCube3d = "materials/weapons/eminem/ice_cube/ice_cube.vmt";

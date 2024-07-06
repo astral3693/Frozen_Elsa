@@ -20,6 +20,8 @@ using Frozen_music.Config;
 using CounterStrikeSharp.API.Modules.Commands.Targeting;
 using CounterStrikeSharp.API.Modules.Commands;
 
+
+
 namespace Frozen_Elsa;
 public class Config : BasePluginConfig
 {
@@ -39,7 +41,7 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
     public override string ModuleName => "Frozen_Elsa";
     public override string ModuleAuthor => "Astral & kenoxyd laser custom";
     public override string ModuleDescription => "Adds Grenades Special Effects.";
-    public override string ModuleVersion => "V. 2.1.3";
+    public override string ModuleVersion => "V. 2.1.4";
 
     public required Config Config { get; set; }
     public byte LIFE_ALIVE { get; private set; }
@@ -110,10 +112,7 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
                     {
                         if (player?.PlayerPawn != null && player?.PlayerPawn.Value != null)
                         {
-                            Vector PlayerPosition = player.Pawn.Value.AbsOrigin;
-                            Vector BulletOrigin = new Vector(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z + 57); // Adjust Z offset if needed
-                            Vector bulletDestination = new Vector(@event.X, @event.Y, @event.Z);
-
+                           
                             var callerName = player == null ? "Console" : player.PlayerName;
                             player?.ExecuteClientCommand($"play sounds/frozen_music2/frozen-go.vsnd_c");
 
@@ -124,29 +123,10 @@ public partial class Frozen_Elsa : BasePlugin, IPluginConfig<Config>
                             //player?.PrintToChat($"Freeze {callerName} 5 secord");
                             //player.PlayerPawn.Value.Render = Color.FromArgb(0, 0, 255);//Azul
                             // The character emits light, and its effect is not satisfactory, but it can indeed achieve character illumination.Here, we need to obtain the player's model path and SetModel, but I have not found a way to do so
-                            AddTimer(0.1f, () =>
-                            {
-                                var prop = Utilities.CreateEntityByName<CCSPlayerPawn>("prop_dynamic");
-                                prop?.SetModel("characters/models/nozb1/skeletons_player_model/skeleton_player_model_1/skeleton_nozb1_pm.vmdl");
-                                prop!.Teleport(player?.PlayerPawn.Value.AbsOrigin, new QAngle(0, 0, 0), new Vector(0, 0, 0));
-                                prop?.AcceptInput("FollowEntity", caller: prop, activator: player?.PlayerPawn.Value, value: "!activator");
-                                prop?.DispatchSpawn();
-
-                                prop.Render = Color.FromArgb(1, 255, 255, 255);
-                                prop.Glow.GlowColorOverride = Color.Blue;
-                                prop.Spawnflags = 256U;
-                                prop.RenderMode = RenderMode_t.kRenderGlow;
-                                prop.Glow.GlowRange = 5000;
-                                prop.Glow.GlowTeam = -1;
-                                prop.Glow.GlowType = 3;
-                                prop.Glow.GlowRangeMin = 3;
-                                AddTimer(2.0f, () =>
-                             {
-                                prop.Remove();
-                                });
+                           
 
 
-                }, TimerFlags.REPEAT);
+                            
                         }
                     }
                 }

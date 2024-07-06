@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hDuO8LYsK0eMJSJ36L/4nagnMVAv/W1GwrGm13eW/k1U3/ISjtRt//piv9wbypboK6Cv9b4WT9IzWgax60QC1g==",
+  "dgSpecHash": "PM9Zfs0nm4Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\amaur\\OneDrive\\Área de Trabalho\\Frozen_Elsa-main\\Frozen_Elsa.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\amaur\\.nuget\\packages\\counterstrikesharp.api\\1.0.233\\counterstrikesharp.api.1.0.233.nupkg.sha512",
+    "C:\\Users\\amaur\\.nuget\\packages\\counterstrikesharp.api\\1.0.247\\counterstrikesharp.api.1.0.247.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\mcmaster.netcore.plugins\\1.4.0\\mcmaster.netcore.plugins.1.4.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.dotnet.apicompat.task\\8.0.203\\microsoft.dotnet.apicompat.task.8.0.203.nupkg.sha512",
@@ -38,6 +38,7 @@
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\amaur\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\scrutor\\4.2.2\\scrutor.4.2.2.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",
     "C:\\Users\\amaur\\.nuget\\packages\\serilog.extensions.logging\\8.0.0\\serilog.extensions.logging.8.0.0.nupkg.sha512",
