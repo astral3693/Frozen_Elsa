@@ -3,11 +3,12 @@
 https://www.youtube.com/watch?v=MWYbYk941AM
 - **Simple playersmoke**
 
-- Commands in chat
-!q Server.ExecuteCommand("mp_warmup_end");
-!u Create a glow effect for the player
-!dc decoy drop
-!a test music
+- **Commands in chat**
+- 
+      !q Server.ExecuteCommand("mp_warmup_end");
+      !u Create a glow effect for the player
+      !dc decoy drop
+      !a test music
  
 
 
